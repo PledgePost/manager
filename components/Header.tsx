@@ -9,14 +9,11 @@ const Header = () => {
     <div>
       <nav className=" border-gray-200 px-4 lg:px-6 py-5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <Link href="/" className="flex items-center">
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              width={100}
-              height={24}
-              priority
-            />
+          <Link href="/" className="flex items-center gap-2">
+            <Image src="/favicon.ico" alt="Logo" width={50} height={50} />
+            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+              Manager
+            </span>
           </Link>
           <div
             className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
@@ -29,7 +26,7 @@ const Header = () => {
                   className="block py-2 pr-4 pl-3 text-gray-700 bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0"
                   aria-current="page"
                 >
-                  Home
+                  Rounds
                 </Link>
               </li>
               <li>
