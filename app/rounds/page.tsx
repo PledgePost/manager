@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ethers } from "ethers";
 import Image from "next/image";
 import Link from "next/link";
-interface Round {
+export interface Round {
   id: string;
   owner: string;
   ipoolAddress: string;
@@ -10,43 +10,6 @@ interface Round {
   startDate: string;
   endDate: string;
   articles: any;
-}
-async function getRound() {
-  try {
-    const res = await fetch(
-      "https://api.studio.thegraph.com/query/52298/pledgepost_mumbai/version/latest",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          query: `
-					query GetAllRounds($id: String!) {
-						rounds(where: {id: $id}) {	
-							id
-							owner
-							ipoolAddress
-							name
-							startDate
-							endDate
-							articles {
-								id
-								content
-								articleId
-								authorAddress
-							}
-						}
-					}
-					`,
-          variables: { id: "1" },
-        }),
-      }
-    ).then((res) => res.json());
-    return res.data?.rounds;
-  } catch (e) {
-    console.error(e);
-  }
 }
 
 async function getAllRound() {
@@ -106,7 +69,7 @@ export default async function Home() {
             ).toLocaleDateString();
 
             return (
-              <Link href={`/round/${round.id}`} key={index}>
+              <Link href={`/rounds/${round.id}`} key={index}>
                 <div className="rounded-[15px] bg-white cursor-pointer shadow-lg">
                   <div className="w-[400px] ">
                     <Image
