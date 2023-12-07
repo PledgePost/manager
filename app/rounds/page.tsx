@@ -7,6 +7,7 @@ export interface Round {
   owner: string;
   ipoolAddress: string;
   name: string;
+  description: string;
   startDate: string;
   endDate: string;
   articles: any;
@@ -15,7 +16,7 @@ export interface Round {
 async function getAllRound() {
   try {
     const res = await fetch(
-      "https://api.studio.thegraph.com/query/52298/pledgepost_opgoerli_v3/version/latest",
+      "https://api.studio.thegraph.com/query/52298/pledgepost_opgoerli_v4/version/latest",
       {
         method: "POST",
         headers: {

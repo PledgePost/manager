@@ -4,7 +4,7 @@ import { ethers } from "ethers";
 async function getRound(id: string) {
   try {
     const res = await fetch(
-      "https://api.studio.thegraph.com/query/52298/pledgepost_opgoerli_v3/version/latest",
+      "https://api.studio.thegraph.com/query/52298/pledgepost_opgoerli_v4/version/latest",
       {
         method: "POST",
         headers: {
@@ -18,6 +18,7 @@ async function getRound(id: string) {
 							owner
 							ipoolAddress
 							name
+							description
 							startDate
 							endDate
 							articles {
@@ -44,6 +45,7 @@ export default async function RoundDetail({ params }: any) {
   if (!round) return <div>Round not found</div>;
   console.log("round", round);
   const decodedName: string = ethers.toUtf8String(round.name);
+  const decodedDescription: string = ethers.toUtf8String(round.description);
   const formattedStartDate: string = new Date(
     Number(round.startDate) * 1000
   ).toLocaleDateString();
@@ -54,6 +56,7 @@ export default async function RoundDetail({ params }: any) {
     <main className="flex min-h-screen items-center p-24">
       <div className="flex  flex-col justify-start mx-auto ">
         <h1 className="text-2xl font-bold text-gray-800">{decodedName}</h1>
+        <p className="text-base text-gray-500">{decodedDescription}</p>
         <p className="text-base text-gray-500">
           {formattedStartDate} - {formattedEndDate}
         </p>
